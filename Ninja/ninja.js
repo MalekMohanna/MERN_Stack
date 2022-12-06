@@ -19,7 +19,26 @@ class Ninja{
     }
     
 }
-const ninja1 = new Ninja("Hyabusa");
-ninja1.sayName();
-ninja1.drinkSake();
-ninja1.showStats();
+// const ninja1 = new Ninja("Hyabusa");
+// ninja1.sayName();
+// ninja1.drinkSake();
+// ninja1.showStats();
+
+class Sensei extends Ninja{
+    constructor(Name){
+        super(Name)
+        this.health=200;
+        this.speed=10;
+        this.strength=10;
+        this.wisdom=10;
+    }
+    speakWisdom(){
+        super.drinkSake();
+    }
+}
+
+const superSensei = new Sensei("Master Splinter");
+superSensei.speakWisdom();
+superSensei.showStats();
+
+
