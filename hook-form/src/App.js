@@ -1,11 +1,11 @@
 import './App.css';
-import Firsto from './components/Firsto';
+import UserForm from './components/UserForm';
 
 
 function App() {
   return (
     <div className="App">
-<Firsto name="malek"></Firsto>
+      <UserForm></UserForm>
     </div>
   );
 }
