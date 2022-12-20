@@ -5,10 +5,9 @@ const ProductForm = (props) => {
     const [title,setTitle] = useState('');
     const [price,setPrice] = useState('');
     const [description,setDiscription] = useState('');
-
     const Submithandler=(e)=>{
         e.preventDefault();
-        axios.post('http://localhost:8000/api/products/new/',{
+        axios.post('http://localhost:8000/api/product/',{
             title,
             price,
             description
