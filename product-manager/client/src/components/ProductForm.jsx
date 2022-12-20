@@ -8,7 +8,7 @@ const ProductForm = (props) => {
 
     const Submithandler=(e)=>{
         e.preventDefault();
-        axios.post('http://localhost:8000/api/product/',{
+        axios.post('http://localhost:8000/api/products/new/',{
             title,
             price,
             description
