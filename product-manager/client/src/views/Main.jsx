@@ -6,7 +6,6 @@ import ProductList from '../components/ProductList';
 const Main = (props) => {
   const [products,setProducts] = useState([]);
   const [loaded,setLoaded] = useState(false);
-
   const removeFromDom = productId => {
     setProducts(products.filter(product => product._id !== productId));
 }
@@ -18,12 +17,19 @@ const Main = (props) => {
     })
     .catch(err=>console.error(err));
   },[])
+
+  const createProduct = product =>{
+    axios.post('http://localhost:8000/api/products/new',product)
+    .then(res=>{setProducts([...products, res.data])})
+    .catch(err=>console.error(err))
+  }
+    
   return (
     <div>
       <h1>Product Manager</h1>
-      <ProductForm/>
+      <ProductForm onSubmitProp={createProduct} initialTitle="" initialPrice="" initialDesc=""  />
       <hr/>
-      {loaded && <ProductList products={products} removeFromDom={removeFromDom}/>}
+      {loaded && <ProductList products={products} removeFromDom={removeFromDom} />}
     </div>
   )
 }

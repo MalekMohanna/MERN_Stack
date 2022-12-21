@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import DeleteButton from './DeleteButton';
 const ProductDetail = (props) => {
     const [product,setProduct] = useState({});
     const {id} = useParams();
@@ -14,14 +15,9 @@ const ProductDetail = (props) => {
         .then(res=> setProduct(res.data))
         .catch(err=>console.error(err));
     })
-
-    const deleteProduct = (productId) => {
-      axios.delete('http://localhost:8000/api/products/' + productId)
-          .then(res => {
-              navigate('/products')
-          })
-          .catch(err => console.error(err));
-  }
+    const redirect=()=>{
+        navigate('/products');
+    }
   return (
     <div>
         <h1>Title : {product.title}</h1>
@@ -31,7 +27,7 @@ const ProductDetail = (props) => {
         <br />
         <Link to={'/products/'+product._id+'/edit'}>Edit product</Link>
         <br />
-        <button onClick={(e)=>{deleteProduct(product._id)}} >Delete</button>
+        <DeleteButton successCallback={redirect} productId={product._id}/>
         </div>
   )
 }
